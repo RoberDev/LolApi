@@ -1,3 +1,4 @@
+import os
 import requests
 from flask import Flask, render_template
 app = Flask(__name__,  template_folder="templates")
@@ -5,8 +6,9 @@ app = Flask(__name__,  template_folder="templates")
 
 @app.route("/")
 def hello():
+    api_key = os.environ['API_KEY']
     nombre = "yeswegaming"
-    URL = "https://euw.api.pvp.net/api/lol/euw/v1.4/summoner/by-name/%s?%s"\
+    URL = "https://euw.api.pvp.net/api/lol/euw/v1.4/summoner/by-name/%s?api_key=%s"\
         % (nombre, api_key)
     print URL
     response = requests.get(URL)
